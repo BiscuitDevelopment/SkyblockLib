@@ -1,0 +1,8 @@
+[{
+  "modid": "skyblocklib",
+  "name": "SkyBlockLib",
+  "description": "A library for Hypixel Skyblock modding.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "authorList": ["Biscut", "DidiSkywalker"]
+}]

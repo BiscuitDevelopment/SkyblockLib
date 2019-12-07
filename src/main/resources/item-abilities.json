@@ -1,0 +1,21 @@
+{
+  "Instant Transmission": {
+    "name": "Instant Transmission",
+    "cooldownSeconds": 0,
+    "manaCost": 50,
+    "itemId": "ASPECT_OF_THE_END"
+  },
+  "Leap": {
+    "name": "Leap",
+    "cooldownSeconds": 2,
+    "manaCost": 100,
+    "itemId": "LEAPING_SWORD",
+    "otherItems": [ "SILK_EDGE_SWORD" ]
+  },
+  "Double Jump": {
+    "name": "Double Jump",
+    "cooldownSeconds": 0,
+    "manaCost": 50,
+    "itemId": "SPIDER_BOOTS"
+  }
+}
