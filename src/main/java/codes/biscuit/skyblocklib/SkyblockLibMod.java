@@ -6,6 +6,9 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 import static codes.biscuit.skyblocklib.SkyblockLibMod.*;
 
+/**
+ * Some javadoc for this class, too
+ */
 @Mod(modid = MOD_ID, version = VERSION, name = MOD_NAME, clientSideOnly = true, acceptedMinecraftVersions = "[1.8.9]")
 public class SkyblockLibMod {
 
