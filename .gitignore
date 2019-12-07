@@ -3,4 +3,5 @@
 /build
 /classes
 /run
+/docs
 *.iml

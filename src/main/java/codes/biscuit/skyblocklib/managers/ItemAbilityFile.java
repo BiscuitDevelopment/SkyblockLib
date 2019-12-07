@@ -20,7 +20,7 @@ import java.util.Optional;
 /**
  * Manages the item abilities file and exposes the possibility to {@link #findAbilityByName(String) get abilities by name}.
  * Create a new instance that loads abilities from the local file and remote repository with {@link #fromFileAndRemote()}.
- * <br/>
+ * <br>
  * The intention behind this is to have a dynamic way of loading abilities, so the remote repository can update the values
  * without needing to release a new version when the abilities change or new ones get introduced in Skyblock.
  */
