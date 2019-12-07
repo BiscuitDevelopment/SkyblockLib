@@ -1,0 +1,16 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  javadoc:
+    name: Generate Javadoc in /docs
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Generate javadoc
+      run: ./gradlew javadoc
