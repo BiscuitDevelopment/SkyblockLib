@@ -1,6 +1,10 @@
 codes.biscuit.skyblocklib
+codes.biscuit.skyblocklib.calendar
 codes.biscuit.skyblocklib.event
+codes.biscuit.skyblocklib.item
 codes.biscuit.skyblocklib.listener
 codes.biscuit.skyblocklib.managers
 codes.biscuit.skyblocklib.model
+codes.biscuit.skyblocklib.player
+codes.biscuit.skyblocklib.skyblock
 codes.biscuit.skyblocklib.utils
