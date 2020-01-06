@@ -15,6 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -72,7 +73,7 @@ public class ItemAbilityFile {
         SBLLog.info("Loading local item abilities...");
         try {
             InputStream fileStream = getClass().getClassLoader().getResourceAsStream(FILE_NAME);
-            Reader fileReader = new InputStreamReader(fileStream);
+            Reader fileReader = new InputStreamReader(Objects.requireNonNull(fileStream));
             Map<String, SkyblockItemAbility> abilityMap = gson.fromJson(fileReader, itemAbilityMapType);
             if (abilityMap != null) {
                 SBLLog.info("Loaded local item abilities: %s", abilityMap);
