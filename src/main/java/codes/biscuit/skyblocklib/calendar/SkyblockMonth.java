@@ -32,4 +32,20 @@ public enum SkyblockMonth {
     public String getScoreboardString() {
         return scoreboardString;
     }
+
+    /**
+     * Get the Skyblock month from it's scoreboard name.
+     * Returns null if no month matching the given name was found.
+     *
+     * @param scoreboardString Scoreboard name to look for
+     * @return The Skyblock month or null
+     */
+    public static SkyblockMonth fromScoreboardName(String scoreboardString) {
+        for (SkyblockMonth skyblockMonth : values()) {
+            if(skyblockMonth.getScoreboardString().equals(scoreboardString)) {
+                return skyblockMonth;
+            }
+        }
+        return null;
+    }
 }
