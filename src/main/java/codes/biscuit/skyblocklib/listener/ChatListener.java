@@ -30,10 +30,10 @@ public class ChatListener {
     @SubscribeEvent
     public void onChatReceived(ClientChatReceivedEvent event) {
         if(event.type == 0) {
-            // normal chat message
+            // A normal chat message
             handleNormalMessage(event.message);
         } else if(event.type == 2) {
-            // message in the action bar
+            // A message in the action bar
             handleActionBarMessage(event.message);
         }
     }
@@ -44,7 +44,7 @@ public class ChatListener {
 
         Matcher matcher = CHAT_ABILITY_PATTERN.matcher(formattedText);
         if (matcher.matches()) {
-            // Fire SkyblockAbilityEvent if ability matching that name was found
+            // Fire a SkyblockAbilityEvent if an ability matching that name was found
             final String abilityName = matcher.group(1);
             final Optional<SkyblockItemAbility> ability = skyblockLib.getItemAbilityFile().findAbilityByName(abilityName);
             ability.ifPresent(skyblockItemAbility -> eventBus.post(new SkyblockAbilityEvent(skyblockItemAbility)));
