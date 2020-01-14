@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
  * This class is used to parse action bar messages and get stats and other info out of them.
  * Parsed info is always kept up-to-date elsewhere in SkyblockLib, like the {@link SkyblockPlayer}, but
  * it can be customized whether that information should still be displayed in the action bar.
- * Here is a list of currently parsed information:<br/>
+ * Here is a list of currently parsed information:<br>
  * <ul>
  * <li>Health and maximum health</li>
  * <li>Mana and maximum mana</li>
@@ -40,23 +40,23 @@ import java.util.regex.Pattern;
  * <p>
  * The general consumer is ran after every thing else, on every single section. So you can remove the entire action bar
  * by simply setting {@link ActionBarConsumer#REMOVE_TEXT_CONSUMER} as the general consumer.
- * Or you can run your own checks to cover sections that aren't handled by SkyblockLib by default.<br/>
+ * Or you can run your own checks to cover sections that aren't handled by SkyblockLib by default.<br>
  * See the documentation for the consumer-setters for more detailed information what their sections look like.
  * <h3>See the {@link ActionBarConsumer} documentation for more detailed information on how exactly to use one!</h3>
  * <p>
  * Here are some example action bars:
  * <p>
  * <blockquote>
- * Normal:                     §c1390/1390❤     §a720§a❈ Defense     §b183/171✎ Mana§r<br/>
- * Normal with Skill XP:       §c1390/1390❤     §3+10.9 Combat (313,937.1/600,000)     §b183/171✎ Mana§r<br/>
- * Zombie Sword:               §c1390/1390❤     §a725§a❈ Defense     §b175/233✎ Mana    §a§lⓩⓩⓩⓩ§2§l§r<br/>
- * Zombie Sword with Skill XP: §c1390/1390❤     §3+10.9 Combat (313,948/600,000)     §b187/233✎ Mana    §a§lⓩⓩⓩⓩ§2§l§r<br/>
- * Normal with Wand:           §c1390/1390❤+§c30▅     §a724§a❈ Defense     §b97/171✎ Mana§r<br/>
- * Normal with Absorption:     §61181/1161❤     §a593§a❈ Defense     §b550/550✎ Mana§r<br/>
- * Normal with Absorp + Wand:  §61181/1161❤+§c20▆     §a593§a❈ Defense     §b501/550✎ Mana§r<br/>
- * End Race:                   §d§lTHE END RACE §e00:52.370            §b147/147✎ Mana§r<br/>
- * Woods Race:                 §A§LWOODS RACING §e00:31.520            §b147/147✎ Mana§r<br/>
- * Trials of Fire:             §c1078/1078❤   §610 DPS   §c1 second     §b421/421✎ Mana§r<br/>
+ * Normal:                     §c1390/1390❤     §a720§a❈ Defense     §b183/171✎ Mana§r<br>
+ * Normal with Skill XP:       §c1390/1390❤     §3+10.9 Combat (313,937.1/600,000)     §b183/171✎ Mana§r<br>
+ * Zombie Sword:               §c1390/1390❤     §a725§a❈ Defense     §b175/233✎ Mana    §a§lⓩⓩⓩⓩ§2§l§r<br>
+ * Zombie Sword with Skill XP: §c1390/1390❤     §3+10.9 Combat (313,948/600,000)     §b187/233✎ Mana    §a§lⓩⓩⓩⓩ§2§l§r<br>
+ * Normal with Wand:           §c1390/1390❤+§c30▅     §a724§a❈ Defense     §b97/171✎ Mana§r<br>
+ * Normal with Absorption:     §61181/1161❤     §a593§a❈ Defense     §b550/550✎ Mana§r<br>
+ * Normal with Absorp + Wand:  §61181/1161❤+§c20▆     §a593§a❈ Defense     §b501/550✎ Mana§r<br>
+ * End Race:                   §d§lTHE END RACE §e00:52.370            §b147/147✎ Mana§r<br>
+ * Woods Race:                 §A§LWOODS RACING §e00:31.520            §b147/147✎ Mana§r<br>
+ * Trials of Fire:             §c1078/1078❤   §610 DPS   §c1 second     §b421/421✎ Mana§r<br>
  * </blockquote>
  */
 public class ActionBarParser {
@@ -327,9 +327,9 @@ public class ActionBarParser {
      * <p>Scorpion tickers: {@code §e§lⓄⓄⓄⓄ§7§l§r}</p>
      * <p>Ornate: {@code §e§lⓩⓩⓩ§6§lⓄⓄ§r}</p>
      * Important to note here is that Zombie uses {@code ⓩ} with color code {@code a} for usable charges and {@code Ⓞ}
-     * with color code {@code 2} for unusable charges.<br/>
-     * Scorpion uses {@code Ⓞ} with color code {@code e} for usable tickers, {@code Ⓞ} with color code {@code 7} for unusable charges.<br/>
-     * Ornate uses {@code ⓩ} with color code {@code e} for usable charges, {@code Ⓞ} with color code {@code 6} for unusable.<br/>
+     * with color code {@code 2} for unusable charges.<br>
+     * Scorpion uses {@code Ⓞ} with color code {@code e} for usable tickers, {@code Ⓞ} with color code {@code 7} for unusable charges.<br>
+     * Ornate uses {@code ⓩ} with color code {@code e} for usable charges, {@code Ⓞ} with color code {@code 6} for unusable.<br>
      * The parsed information is available as {@link SkyblockPlayer#getCurrentItemCharges()}.
      *
      * <p>Set to {@code null} to remove</p>

@@ -15,7 +15,7 @@ public class SkyblockPlayer {
     private ItemCharges currentItemCharges;
 
     /**
-     * Get the attributes of a player. This includes their health, defence, and mana.
+     * @return The attributes of a player. This includes their health, defence, and mana.
      */
     @NotNull
     public Attributes getAttributes() {
