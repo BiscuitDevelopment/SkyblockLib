@@ -10,16 +10,22 @@ import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.EventBus;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatcher;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.util.Collections;
 import java.util.Map;
 
 import static org.mockito.Mockito.*;
 
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(SkyblockLib.class)
 public class ChatListenerTest {
 
     private final String TEST_KEY = "Test Ability";
@@ -36,6 +42,8 @@ public class ChatListenerTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         when(skyblockLib.getItemAbilityFile()).thenReturn(ItemAbilityFile.fromAbilityMap(testAbilities));
+        PowerMockito.mockStatic(SkyblockLib.class);
+        when(SkyblockLib.isOnSkyblock()).thenReturn(true);
         chatListener = new ChatListener(skyblockLib, eventBus);
     }
 
