@@ -2,6 +2,7 @@ package codes.biscuit.skyblocklib;
 
 import codes.biscuit.skyblocklib.listener.*;
 import codes.biscuit.skyblocklib.managers.ItemAbilityFile;
+import codes.biscuit.skyblocklib.parsers.ActionBarParser;
 import codes.biscuit.skyblocklib.player.SkyblockPlayer;
 import codes.biscuit.skyblocklib.skyblock.Skyblock;
 import net.minecraftforge.common.MinecraftForge;
@@ -16,18 +17,22 @@ public class SkyblockLib {
     }
 
     public static SkyblockLib getInstance() {
-        if (instance == null) start();
+        if (instance == null) {
+            start();
+        }
         return instance;
     }
 
     private final ItemAbilityFile itemAbilityFile;
     private final Skyblock skyblock;
     private final SkyblockPlayer skyblockPlayer;
+    private final ActionBarParser actionBarParser;
 
     private SkyblockLib() {
         itemAbilityFile = ItemAbilityFile.fromFileAndRemote();
         skyblock = new Skyblock();
         skyblockPlayer = new SkyblockPlayer();
+        actionBarParser = new ActionBarParser();
 
         // start listeners and stuff
         MinecraftForge.EVENT_BUS.register(new EventListener());
@@ -41,11 +46,19 @@ public class SkyblockLib {
         return itemAbilityFile;
     }
 
-    public Skyblock getSkyblock() {
-        return skyblock;
+    public ActionBarParser getActionBarParser() {
+        return actionBarParser;
     }
 
-    public SkyblockPlayer getSkyblockPlayer() {
-        return skyblockPlayer;
+    public static Skyblock getSkyblock() {
+        return getInstance().skyblock;
+    }
+
+    public static SkyblockPlayer getSkyblockPlayer() {
+        return getInstance().skyblockPlayer;
+    }
+
+    public static boolean isOnSkyblock() {
+        return getSkyblock().isOnSkyblock();
     }
 }

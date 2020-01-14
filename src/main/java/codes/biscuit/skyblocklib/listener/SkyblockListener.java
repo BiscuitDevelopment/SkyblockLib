@@ -12,12 +12,12 @@ public class SkyblockListener {
 
     @SubscribeEvent
     public void onSkyblockJoined(SkyblockJoinedEvent event) {
-        SkyblockLib.getInstance().getSkyblock().setOnSkyblock(true);
+        SkyblockLib.getSkyblock().setOnSkyblock(true);
     }
 
     @SubscribeEvent
     public void onSkyblockLeft(SkyblockLeftEvent event) {
-        SkyblockLib.getInstance().getSkyblock().setOnSkyblock(false);
+        SkyblockLib.getSkyblock().setOnSkyblock(false);
     }
 
 }

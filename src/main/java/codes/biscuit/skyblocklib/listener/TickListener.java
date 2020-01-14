@@ -3,17 +3,22 @@ package codes.biscuit.skyblocklib.listener;
 import codes.biscuit.skyblocklib.SkyblockLib;
 import codes.biscuit.skyblocklib.event.SkyblockJoinedEvent;
 import codes.biscuit.skyblocklib.event.SkyblockLeftEvent;
+import codes.biscuit.skyblocklib.item.PowerOrbType;
+import codes.biscuit.skyblocklib.managers.PowerOrbManager;
 import codes.biscuit.skyblocklib.parsers.ScoreboardParser;
 import codes.biscuit.skyblocklib.utils.TextUtils;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.scoreboard.Score;
 import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.EventBus;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -60,13 +65,13 @@ public class TickListener {
                 if (skyblockScoreboard) {
                     // If it's a Skyblock scoreboard and the player has not joined Skyblock yet,
                     // this indicates that he did so.
-                    if(!SkyblockLib.getInstance().getSkyblock().isOnSkyblock()) {
+                    if(!SkyblockLib.getSkyblock().isOnSkyblock()) {
                         EVENT_BUS.post(new SkyblockJoinedEvent());
                     }
                 } else {
                     // If it's not a Skyblock scoreboard, the player must have left Skyblock and
                     // be in some other Hypixel lobby or game.
-                    if(SkyblockLib.getInstance().getSkyblock().isOnSkyblock()) {
+                    if(SkyblockLib.getSkyblock().isOnSkyblock()) {
                         EVENT_BUS.post(new SkyblockLeftEvent());
                     }
                 }
@@ -87,6 +92,34 @@ public class TickListener {
 
                 // Parse the scoreboard lines
                 scoreboardParser.parseScoreboard(scoreboardLines);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onEntityEvent(LivingEvent.LivingUpdateEvent e) {
+        if(!SkyblockLib.isOnSkyblock()) {
+            return;
+        }
+
+        Entity entity = e.entity;
+
+        if (entity instanceof EntityArmorStand && entity.hasCustomName()) {
+            String customNameTag = entity.getCustomNameTag();
+
+            PowerOrbType powerOrbType = PowerOrbType.getByOrbDisplayname(customNameTag);
+            if (powerOrbType != null
+                    && Minecraft.getMinecraft().thePlayer != null
+                    && powerOrbType.isInRadius(entity.getPosition().distanceSq(Minecraft.getMinecraft().thePlayer.getPosition()))) {
+                String[] customNameTagSplit = customNameTag.split(" ");
+                String secondsString = customNameTagSplit[customNameTagSplit.length - 1]
+                        .replaceAll("§e", "")
+                        .replaceAll("s", "");
+                try {
+                    // Apparently they don't have a second count for a moment after spawning, that's what this try-catch is for
+                    int seconds = Integer.parseInt(secondsString);
+                    PowerOrbManager.getInstance().put(powerOrbType, seconds);
+                } catch (NumberFormatException ignored) { }
             }
         }
     }

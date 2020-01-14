@@ -3,6 +3,7 @@ package codes.biscuit.skyblocklib.listener;
 import codes.biscuit.skyblocklib.SkyblockLib;
 import codes.biscuit.skyblocklib.event.SkyblockAbilityEvent;
 import codes.biscuit.skyblocklib.model.SkyblockItemAbility;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.fml.common.eventhandler.EventBus;
@@ -29,12 +30,16 @@ public class ChatListener {
 
     @SubscribeEvent
     public void onChatReceived(ClientChatReceivedEvent event) {
+        if(!SkyblockLib.isOnSkyblock()) {
+            return;
+        }
+
         if(event.type == 0) {
             // A normal chat message
             handleNormalMessage(event.message);
         } else if(event.type == 2) {
             // A message in the action bar
-            handleActionBarMessage(event.message);
+            handleActionBarMessage(event);
         }
     }
 
@@ -51,9 +56,10 @@ public class ChatListener {
         }
     }
 
-    private void handleActionBarMessage(IChatComponent message) {
-        final String unformattedText = message.getUnformattedText();
-        final String formattedText = message.getFormattedText();
+    private void handleActionBarMessage(ClientChatReceivedEvent event) {
+        // parse using ActionBarParser and display the rest message instead
+        String restMessage = SkyblockLib.getInstance().getActionBarParser().parseActionBar(event.message.getUnformattedText());
+        event.message = new ChatComponentText(restMessage);
     }
 
 }

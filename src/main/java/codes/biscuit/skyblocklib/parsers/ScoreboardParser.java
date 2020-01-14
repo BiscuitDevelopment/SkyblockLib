@@ -54,7 +54,7 @@ public class ScoreboardParser {
     private void updateCalendar(String dateString, String timeString) {
         SkyblockCalendar skyblockCalendar = SkyblockCalendar.parse(dateString, timeString);
         if(skyblockCalendar != null) {
-            SkyblockCalendar mainCalendar = SkyblockLib.getInstance().getSkyblock().getCalendar();
+            SkyblockCalendar mainCalendar = SkyblockLib.getSkyblock().getCalendar();
             if(!mainCalendar.equals(skyblockCalendar)) {
                 EVENT_BUS.post(new SkyblockTimeUpdateEvent(mainCalendar, skyblockCalendar));
                 mainCalendar.setMonth(skyblockCalendar.getMonth());

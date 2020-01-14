@@ -9,6 +9,7 @@ public class TextUtils {
 
     private static final Pattern STRIP_COLOR_PATTERN = Pattern.compile("(?i)§[0-9A-FK-OR]");
     private static final Pattern LETTERS_NUMBERS = Pattern.compile("[^a-z A-Z:0-9/']");
+    private static final Pattern NUMBERS_SLASHES = Pattern.compile("[^0-9 /]");
 
     private TextUtils() {}
 
@@ -49,4 +50,16 @@ public class TextUtils {
             default: return "th";
         }
     }
+
+
+    /**
+     * Removes any character that isn't a number from a given text.
+     *
+     * @param text Input text
+     * @return Input text with only numbers
+     */
+    public static String getNumbersOnly(String text) {
+        return NUMBERS_SLASHES.matcher(text).replaceAll("");
+    }
+
 }
